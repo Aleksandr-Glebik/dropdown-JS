@@ -15,8 +15,16 @@ class Dropdown {
                 } else {
                     this.open()
                 }
+            } else if (event.target.tagName.toLowerCase() === 'li') {
+                console.log(event.target.dataset.id);
+
             }
         })
+        const itemsHTML = this.items.map(i => {
+            return `<li data-id="${i.id}">${i.label}</li>`
+        }).join(' ')
+
+        this.$el.querySelector('.dropdown__menu').insertAdjacentHTML('afterbegin', itemsHTML)
     }
 
     open() {
