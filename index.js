@@ -16,7 +16,8 @@ class Dropdown {
                     this.open()
                 }
             } else if (event.target.tagName.toLowerCase() === 'li') {
-                console.log(event.target.dataset.id);
+                // console.log(event.target.dataset.id);
+                this.select(event.target.dataset.id);
 
             }
         })
@@ -25,6 +26,13 @@ class Dropdown {
         }).join(' ')
 
         this.$el.querySelector('.dropdown__menu').insertAdjacentHTML('afterbegin', itemsHTML)
+    }
+
+    select(id) {
+        const item = this.items.find(i => i.id === id)
+        // console.log(item);
+        this.$el.querySelector('.dropdown__label').textContent = item.label
+        this.close()
     }
 
     open() {
